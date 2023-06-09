@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+  cs_g_db:
+    restart: always
+    container_name: cs_gateway_db
+    image: postgres
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=cs_gateway
+    ports:
+      - "5432:5432"
+    networks:
+      - cs_gateway_network
+    volumes:
+      - ../../cs-data/gateway:/var/lib/postgresql/data
+
+  backend:
+    container_name: cs_gateway
+    restart: always
+    build: .
+    command: python3 server.py
+    volumes:
+      - .:/cs_gateway
+    ports:
+      - "8000:8000"
+    depends_on:
+      - cs_g_db
+    networks:
+      - cs_gateway_network
+      - cs_account_network
+      - tweet_gen_network
+      - cs_api_keys_network
+      - cs_microservice_network
+
+networks:
+  cs_gateway_network:
+    driver: bridge
+  cs_account_network:
+    external: true
+  tweet_gen_network:
+    external: true
+  cs_api_keys_network:
+    external: true
+  cs_microservice_network:
+    external: true

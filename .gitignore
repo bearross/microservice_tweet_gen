@@ -1,0 +1,9 @@
+**/.idea
+**/__pycache__/
+**/.DS_Store
+**/alembic/versions
+
+**/uploads
+**/files
+
+tweet_generator/lightning_logs/

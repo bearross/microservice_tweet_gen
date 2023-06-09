@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  cs_ak_db:
+    restart: always
+    container_name: cs_api_keys_db
+    image: postgres
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=cs_api_keys
+    ports:
+      - "5435:5435"
+    networks:
+      - cs_api_keys_network
+    volumes:
+      - ../../cs-data/api-keys:/var/lib/postgresql/data
+    command: -p 5435
+
+  backend:
+    container_name: cs_api_keys
+    restart: always
+    build: .
+    command: python3 server.py
+    volumes:
+      - .:/cs_api_keys
+    ports:
+      - "8005:8000"
+    depends_on:
+      - cs_ak_db
+    networks:
+      - cs_api_keys_network
+
+networks:
+  cs_api_keys_network:
+    name: cs_api_keys_network
+    driver: bridge

@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  cs_a_db:
+    restart: always
+    container_name: cs_account_db
+    image: postgres
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=cs_account
+    ports:
+      - "5433:5433"
+    networks:
+      - cs_account_network
+    volumes:
+      - ../../cs-data/account:/var/lib/postgresql/data
+    command: -p 5433
+
+  backend:
+    container_name: cs_account
+    restart: always
+    build: .
+    command: python3 server.py
+    volumes:
+      - .:/cs_account
+    ports:
+      - "8001:8001"
+    depends_on:
+      - cs_a_db
+    networks:
+      - cs_account_network
+
+networks:
+  cs_account_network:
+    name: cs_account_network
+    driver: bridge

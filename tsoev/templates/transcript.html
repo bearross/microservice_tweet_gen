@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Transcription Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style type="text/css" media="screen">
+    h2 {
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+<section class="mb-5">
+<div class="container">
+  <h1>{{ headerline }}</h1>
+  {{ summary }}
+  <h2>Video Transcription</h2>
+  {% for index in range(0, size): %}
+  <h3>{{ topic_list[index] }}</h3>
+  {{ content_list[index] }}
+  {% endfor %}
+</div>
+</section>
+<section class="mb-5">
+  <div class="container">
+      <div class="row">
+        <div class="col">
+          <h2 class="text-center ">Recent posts like this</h2>
+        </div>
+      </div>
+    <div class="row">
+      <div class="col col-md mb-3 mb-md-0">
+          <div class="card text-center h-100">
+            <div class="card-body ">
+              <a href="https://moz.com/blog/fast-featured-snippets-using-entities">
+                <img class="w-100 mb-3" src="https://moz.imgix.net/blog/banners/search-engines-5511dd3_2021-03-30-210656.png?auto=format&amp;ch=dpr&amp;fit=max&amp;h=196&amp;q=50&amp;w=580&amp;s=0f6b94c3d0b1567a3973f7b2cfaded54" alt="">
+              </a>
+              <h3 class="h5 mt-0">Fast &amp; Featured: How Entities Can Help You Conquer Snippets in Less Than 4 Minutes</h3>
+              <div class="cta-wrapper">
+                <a class="link-cta" href="https://moz.com/blog/fast-featured-snippets-using-entities">
+                Read this post </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="col col-md mb-3 mb-md-0">
+          <div class="card text-center h-100">
+            <div class="card-body ">
+              <a href="https://moz.com/blog/find-keyword-opportunities-without-historical-data">
+                <img class="w-100 mb-3" src="https://moz.imgix.net/blog/banners/600b73d2604a04.49420760_2021-03-30-210714.jpg?auto=format&amp;ch=dpr&amp;fit=max&amp;h=196&amp;q=50&amp;w=580&amp;s=b1c7f8664b1819e03d4937b5c9184f5a" alt="">
+              </a>
+              <h3 class="h5 mt-0">Finding Keyword Opportunities Without Historical Data</h3>
+              <div class="cta-wrapper"><a class="link-cta" href="https://moz.com/blog/find-keyword-opportunities-without-historical-data">
+                Read this post </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="col col-md mb-3 mb-md-0">
+          <div class="card text-center h-100">
+            <div class="card-body ">
+              <a href="https://moz.com/blog/daily-seo-fix-collecting-keywords">
+                <img class="w-100 mb-3" src="https://moz.imgix.net/blog/banners/5fb7139b596e15.17130724_2021-03-30-211250.jpg?auto=format&amp;ch=dpr&amp;fit=max&amp;h=196&amp;q=50&amp;w=580&amp;s=5e55912cb0b0b7e086c67da30fe5bc08" alt="">
+              </a>
+              <h3 class="h5 mt-0">Daily SEO Fix: Collecting, Organizing, and Tracking Keywords with Moz Pro</h3>
+              <div class="cta-wrapper"><a class="link-cta" href="https://moz.com/blog/daily-seo-fix-collecting-keywords">
+                Read this post </a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>        
+</section>
+</body>
+</html>

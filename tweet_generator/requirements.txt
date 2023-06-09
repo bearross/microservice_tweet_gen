@@ -1,0 +1,17 @@
+requests==2.24.0
+pytorch_lightning==1.2.6
+SQLAlchemy==1.4.7
+tornado==6.1
+torch==1.8.1
+wikipedia==1.4.0
+transformers==4.4.2
+Scrapy==2.4.1
+pandas==1.2.0
+spacy==3.0.5
+beautifulsoup4==4.9.1
+scikit_learn==0.24.1
+tornado_sqlalchemy==0.7.0
+alembic==1.5.8
+sentencepiece~=0.1.95
+psycopg2-binary~=2.8.6
+

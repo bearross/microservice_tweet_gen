@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  cs_tg_db:
+    container_name: cs_tweet_gen_db
+    restart: always
+    image: postgres
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=tweet_gen
+    ports:
+      - "5434:5434"
+    networks:
+      - tweet_gen_network
+    volumes:
+      - ../../cs-data/tweet-gen:/var/lib/postgresql/data
+    command: -p 5434
+
+  cs_tweet_gen:
+    container_name: cs_tweet_gen
+    restart: always
+    build: .
+    command: python3 server.py
+    volumes:
+      - .:/cs_tweet_gen
+    ports:
+      - "8002:8002"
+    depends_on:
+      - cs_tg_db
+    networks:
+      - tweet_gen_network
+
+networks:
+  tweet_gen_network:
+    name: tweet_gen_network
+    driver: bridge

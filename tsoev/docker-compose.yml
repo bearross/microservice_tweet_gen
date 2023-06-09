@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  cs_tsoev_db:
+    container_name: cs_tsoev_db
+    restart: always
+    image: mysql:5.7
+    volumes:
+      - ../../cs-data/cs_tsoev:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: copyscience
+#      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+    ports:
+      - '3306:3306'
+    networks:
+      - cs_microservice_network
+
+  cs_tsoev:
+    container_name: cs_tsoev
+    restart: always
+    build: .
+    command: python3 app.py
+    volumes:
+      - .:/cs_tsoev
+    ports:
+      - '8006:8006'
+    depends_on:
+      - cs_tsoev_db
+    networks:
+      - cs_microservice_network
+
+networks:
+  cs_microservice_network:
+    name: cs_microservice_network
+    driver: bridge

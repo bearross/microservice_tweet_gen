@@ -1,0 +1,11 @@
+SQLAlchemy==1.4.7
+tornado==6.1
+graphene_sqlalchemy==2.3.0
+graphene_tornado==2.6.1
+graphene==2.1.8
+tornado_sqlalchemy==0.7.0
+alembic~=1.5.8
+psycopg2-binary~=2.8.6
+
+requests~=2.24.0
+graphene-file-upload~=1.3.0
